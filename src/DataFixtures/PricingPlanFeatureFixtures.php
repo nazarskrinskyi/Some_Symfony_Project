@@ -15,8 +15,11 @@ class PricingPlanFeatureFixtures extends Fixture
 
         $features_plan = new PricingPlanFeature();
 
+
         $manager->persist($features_plan);
 
         $manager->flush();
+        $this->setReference('feature', $features_plan);
+
     }
 }

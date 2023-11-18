@@ -14,10 +14,12 @@ class PricingPlanBenefitFixtures extends Fixture
         $benefit_plan = new PricingPlanBenefit();
 
         $benefit_plan->setName('30 days for free');
-        $benefit_plan->setPricingPlan();
+
+        $benefit_plan->setPricingPlan($this->getReference('pricing_plan'));
 
         $manager->persist($benefit_plan);
 
         $manager->flush();
+        $this->setReference('benefit', $benefit_plan);
     }
 }
