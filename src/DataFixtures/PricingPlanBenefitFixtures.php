@@ -11,15 +11,17 @@ class PricingPlanBenefitFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
-        $benefit_plan = new PricingPlanBenefit();
+        // Loop to create 10 benefits
+        for ($i = 1; $i <= 10; $i++) {
+            $benefit_plan = new PricingPlanBenefit();
+            $benefit_plan->setName("Benefit $i");
+            $rand = rand(1,3);
+            $benefit_plan->setPricingPlan($this->getReference("pricing_plan_$rand"));
 
-        $benefit_plan->setName('30 days for free');
-
-        $benefit_plan->setPricingPlan($this->getReference('pricing_plan'));
-
-        $manager->persist($benefit_plan);
+            $manager->persist($benefit_plan);
+            $this->addReference("benefit_$i", $benefit_plan);
+        }
 
         $manager->flush();
-        $this->setReference('benefit', $benefit_plan);
     }
 }

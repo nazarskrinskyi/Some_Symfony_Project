@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\PricingPlan;
+use App\Entity\PricingPlanFeature;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,8 +20,10 @@ class PricingController extends AbstractController
     public function index(): Response
     {
         $pricing = $this->doctrine->getRepository(PricingPlan::class)->findAll();
+        $features = $this->doctrine->getRepository(PricingPlanFeature::class)->findAll();
         return $this->render('pricing/index.html.twig', [
             'pricing' => $pricing,
+            'features' => $features
         ]);
     }
 }

@@ -109,6 +109,11 @@ class PricingPlan
         return $this;
     }
 
+    public function hasFeature(PricingPlanFeature $feature): bool
+    {
+        return $this->features->contains($feature);
+    }
+
     public function removeFeature(PricingPlanFeature $feature): static
     {
         $this->features->removeElement($feature);
