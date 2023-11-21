@@ -14,6 +14,8 @@ COPY ./docker/app/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # Install PHP extensions and dependencies
 RUN apt-get update && apt-get install -y \
+    && apt-get install -y libicu-dev \
+    && docker-php-ext-install intl \
     apt-utils \
     libpq-dev \
     libpng-dev \
@@ -31,7 +33,8 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 ENV PATH="/root/.symfony/bin:${PATH}"
 
-
+# Install PHP extensions
+RUN docker-php-ext-install intl pdo_mysql bcmath gd zip
 
 # Update package lists and install nodejs
 RUN apt-get update \

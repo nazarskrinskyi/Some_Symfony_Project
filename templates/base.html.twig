@@ -11,6 +11,7 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
+
     {% endblock %}
 </head>
 <body>
@@ -23,7 +24,7 @@
                 <span class="self-center text-xl font-semibold whitespace-nowrap text-white">Flowbite</span>
             </a>
             <div class="flex items-center lg:order-2">
-                <a href="#"
+                <a href="{{ path('app_login') }}"
                    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Log
                     in</a>
                 <button data-collapse-toggle="mobile-menu-2" type="button"
@@ -103,14 +104,13 @@
                     <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
                 </li>
                 <li class="pr-4">
-                    <a href="#" class="hover:underline">Contact</a>
+                        {{ render(controller('App\\Controller\\ContactUsController::index')) }}
                 </li>
             </ul>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"/>
         <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a
                     href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
-
     </div>
 </footer>
 

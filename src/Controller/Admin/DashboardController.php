@@ -29,8 +29,9 @@ class DashboardController extends AbstractDashboardController
         // Prepare data to be passed to the template
         $chartData = $this->prepareChartData($chart);
 
-        $url = $this->adminUrlGenerator->setController();
-
+//        $url = $this->adminUrlGenerator
+//            ->setController(PricingPlanCrudController::class)
+//            ->generateUrl();
         return $this->render('admin/index.html.twig', [
             'chartData' => $chartData,
         ]);

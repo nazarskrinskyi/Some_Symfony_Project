@@ -3,11 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\PricingPlan;
+use App\Form\PricingPlanBenefitType;
+use App\Form\PricingPlanFeatureType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use phpDocumentor\Reflection\Types\Integer;
 
 class PricingPlanCrudController extends AbstractCrudController
 {
@@ -33,5 +38,18 @@ class PricingPlanCrudController extends AbstractCrudController
 
 
 
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            TextField::new('name'),
+            IntegerField::new('price'),
+            CollectionField::new('benefits')
+                ->setEntryType(PricingPlanBenefitType::class)
+                ->onlyOnForms(),
+            CollectionField::new('features')
+                ->setEntryType(PricingPlanFeatureType::class)
+                ->onlyOnForms()
+        ];
+    }
 
 }
